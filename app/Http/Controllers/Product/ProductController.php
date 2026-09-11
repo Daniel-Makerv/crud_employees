@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Product;
 
 use App\Exports\ProductsExport;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Inertia\Inertia;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProductsImport;
+use Illuminate\Http\Request;
+use App\Exports\ProductsTemplateExport;
+
 class ProductController extends Controller
 {
     /**
@@ -107,6 +110,48 @@ class ProductController extends Controller
         return Excel::download(
             new ProductsExport(),
             'productos.xlsx'
+        );
+    }
+
+    public function import()
+    {
+        return Inertia::render('Product/Import');
+    }
+
+    public function storeImport(Request $request)
+    {
+        $request->validate([
+            'file' => [
+                'required',
+                'file',
+                'mimes:xlsx,xls,csv',
+                'max:10240',
+            ],
+        ]);
+
+        $import = new ProductsImport();
+
+        Excel::import($import, $request->file('file'));
+
+        if ($import->failures()->isNotEmpty()) {
+            return redirect()
+                ->route('products.index')
+                ->with(
+                    'warning',
+                    'Algunos productos no pudieron importarse.'
+                );
+        }
+
+        return redirect()
+            ->route('products.index')
+            ->with('success', 'Productos importados correctamente.');
+    }
+
+    public function downloadTemplate()
+    {
+        return Excel::download(
+            new ProductsTemplateExport(),
+            'plantilla_productos.xlsx'
         );
     }
 }
