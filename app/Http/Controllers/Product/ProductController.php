@@ -15,7 +15,7 @@ class ProductController extends Controller
     public function index()
     {
         return Inertia::render('Product/Index', [
-            'products' => Product::paginate(10),
+            'products' => Product::orderBy('id', 'desc')->paginate(10),
         ]);
     }
 
@@ -24,7 +24,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Product/Create');
     }
 
     /**
@@ -32,7 +32,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'price' => ['required', 'numeric', 'min:0'],
+            'stock' => ['required', 'integer', 'min:0'],
+            'photo' => ['nullable', 'url', 'max:2048'],
+            'active' => ['required', 'boolean'],
+        ]);
+
+        Product::create($validated);
+
+        return redirect()
+            ->route('products.index')
+            ->with('success', 'Producto creado correctamente.');
     }
 
     /**
