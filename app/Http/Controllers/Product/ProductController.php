@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Product;
 
+use App\Exports\ProductsExport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Inertia\Inertia;
-
+use Maatwebsite\Excel\Facades\Excel;
 class ProductController extends Controller
 {
     /**
@@ -99,5 +100,13 @@ class ProductController extends Controller
         return redirect()
             ->route('products.index')
             ->with('success', 'Producto eliminado correctamente.');
+    }
+
+    public function export()
+    {
+        return Excel::download(
+            new ProductsExport(),
+            'productos.xlsx'
+        );
     }
 }

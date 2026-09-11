@@ -31,12 +31,21 @@ const deleteProduct = (product) => {
                     </p>
                 </div>
 
-                <Link
-                    :href="route('products.create')"
-                    class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Nuevo producto
-                </Link>
+                <div class="flex items-center gap-3">
+                    <a
+                        :href="route('products.export')"
+                        class="inline-flex items-center justify-center rounded-lg border border-emerald-600 bg-white px-4 py-2.5 text-sm font-semibold text-emerald-700 shadow-sm transition hover:bg-emerald-50"
+                    >
+                        Exportar Excel
+                    </a>
+
+                    <Link
+                        :href="route('products.create')"
+                        class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700"
+                    >
+                        Nuevo producto
+                    </Link>
+                </div>
             </div>
         </template>
 

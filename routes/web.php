@@ -27,6 +27,9 @@ Route::middleware('auth')->group(function () {
 
 
     Route::resource('/products', Product\ProductController::class);
+
+    Route::get('/products-export', [Product\ProductController::class, 'export'])
+        ->name('products.export');
 });
 
 require __DIR__ . '/auth.php';
