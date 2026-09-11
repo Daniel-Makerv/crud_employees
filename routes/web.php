@@ -11,14 +11,14 @@ Route::get('/', function () {
         return redirect()->route('login');
     }
 
-    return redirect()->route('dashboard');
+    return redirect()->route('products.index');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return Inertia::render('Dashboard');
+// })
+//     ->middleware(['auth', 'verified'])
+//     ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
 
