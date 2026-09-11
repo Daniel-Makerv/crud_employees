@@ -1,58 +1,376 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CRUD Employees
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplicación desarrollada con Laravel, Vue 3, Inertia.js, Tailwind CSS y MySQL.
 
-## About Laravel
+## Requisitos
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Antes de instalar el proyecto asegúrate de tener:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- PHP 8.4+
+- Composer
+- Node.js 24+
+- NPM
+- MySQL
+- Git
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Puedes comprobar las versiones instaladas con:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+php -v
+composer --version
+node -v
+npm -v
+mysql --version
+git --version
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## Instalación
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 1. Clonar el repositorio
 
-## Code of Conduct
+```bash
+git clone URL_DEL_REPOSITORIO
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Entrar al proyecto:
 
-## Security Vulnerabilities
+```bash
+cd crud-employees
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 2. Instalar dependencias de PHP
 
-## License
+```bash
+composer install
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 3. Instalar dependencias de JavaScript
+
+```bash
+npm install
+```
+
+### 4. Crear el archivo de configuración
+
+Copiar `.env.example`:
+
+```bash
+cp .env.example .env
+```
+
+En Windows CMD:
+
+```cmd
+copy .env.example .env
+```
+
+### 5. Generar la llave de Laravel
+
+```bash
+php artisan key:generate
+```
+
+### 6. Configurar la base de datos
+
+Crear una base de datos MySQL.
+
+Por ejemplo:
+
+```sql
+CREATE DATABASE crud_employees;
+```
+
+Después configurar las siguientes variables en `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=crud_employees
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Modificar `DB_USERNAME` y `DB_PASSWORD` de acuerdo con la configuración local de MySQL.
+
+### 7. Ejecutar migraciones
+
+```bash
+php artisan migrate
+```
+
+Si el proyecto contiene seeders y se quieren cargar los datos iniciales:
+
+```bash
+php artisan db:seed
+```
+
+También se pueden ejecutar migraciones y seeders al mismo tiempo:
+
+```bash
+php artisan migrate --seed
+```
+
+---
+
+## Ejecutar el proyecto
+
+Se necesitan dos terminales.
+
+### Terminal 1 - Laravel
+
+```bash
+php artisan serve
+```
+
+Por defecto la aplicación estará disponible en:
+
+```text
+http://127.0.0.1:8000
+```
+
+### Terminal 2 - Vite
+
+```bash
+npm run dev
+```
+
+Mantener ambos procesos ejecutándose durante el desarrollo.
+
+---
+
+## Compilar frontend
+
+Para generar los archivos del frontend para producción:
+
+```bash
+npm run build
+```
+
+---
+
+## Reiniciar la base de datos
+
+Para eliminar todas las tablas y ejecutar nuevamente las migraciones:
+
+```bash
+php artisan migrate:fresh
+```
+
+Con seeders:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+> Este comando elimina todos los datos existentes de la base de datos.
+
+---
+
+## Limpiar caché
+
+Si se realizan cambios de configuración, rutas o variables de entorno:
+
+```bash
+php artisan optimize:clear
+```
+
+---
+
+## Comandos rápidos
+
+Para una instalación nueva:
+
+```bash
+git clone URL_DEL_REPOSITORIO
+cd crud-employees
+
+composer install
+npm install
+
+cp .env.example .env
+
+php artisan key:generate
+```
+
+Configurar la base de datos en `.env` y después ejecutar:
+
+```bash
+php artisan migrate --seed
+npm run dev
+```
+
+En otra terminal:
+
+```bash
+php artisan serve
+```
+
+---
+
+## Stack
+
+- Laravel
+- PHP
+- Vue 3
+- Inertia.js
+- Tailwind CSS
+- Vite
+- MySQL
+- Laravel Breeze
+- Laravel Excel
+
+---
+
+## Estructura principal
+
+```text
+app/
+├── Http/
+│   ├── Controllers/
+│   └── Middleware/
+├── Models/
+├── Exports/
+└── Imports/
+
+database/
+├── migrations/
+├── factories/
+└── seeders/
+
+resources/
+└── js/
+    ├── Components/
+    ├── Layouts/
+    └── Pages/
+
+routes/
+└── web.php
+```
+
+---
+
+## Funcionalidades
+
+El proyecto incluye:
+
+- Autenticación
+- Roles
+- Permisos
+- Protección de rutas mediante permisos
+- CRUD de productos
+- Paginación
+- Importación de productos desde Excel
+- Exportación de productos a Excel
+- Descarga de plantilla para importación
+- Vue 3 + Inertia.js
+- Interfaz con Tailwind CSS
+
+---
+
+## Permisos
+
+El sistema utiliza roles y permisos.
+
+Los usuarios pertenecen a un rol y los roles tienen permisos asociados.
+
+Ejemplos de permisos:
+
+```text
+view-products
+create-products
+edit-products
+delete-products
+export-products
+import-products
+```
+
+Las rutas del backend están protegidas mediante middleware:
+
+```php
+->middleware('permission:view-products')
+```
+
+Además, el frontend utiliza los permisos del usuario para mostrar u ocultar las acciones correspondientes.
+
+---
+
+## Problemas comunes
+
+### Error de APP_KEY
+
+Si aparece:
+
+```text
+No application encryption key has been specified.
+```
+
+Ejecutar:
+
+```bash
+php artisan key:generate
+```
+
+### Error de conexión a MySQL
+
+Verificar las variables:
+
+```env
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=crud_employees
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Después:
+
+```bash
+php artisan optimize:clear
+```
+
+### Cambios de frontend no visibles
+
+Verificar que Vite esté ejecutándose:
+
+```bash
+npm run dev
+```
+
+### Error después de modificar rutas o configuración
+
+Ejecutar:
+
+```bash
+php artisan optimize:clear
+```
+
+---
+
+## Producción
+
+Antes de desplegar el proyecto:
+
+```bash
+composer install --no-dev --optimize-autoloader
+npm install
+npm run build
+php artisan optimize
+```
+
+Las migraciones en producción deben ejecutarse con:
+
+```bash
+php artisan migrate --force
+```
+
+Configurar:
+
+```env
+APP_ENV=production
+APP_DEBUG=false
+```
+
+Nunca subir el archivo `.env` al repositorio.
