@@ -15,32 +15,32 @@ class PermissionSeeder extends Seeder
     {
         $permissions = [
             [
-                'name' => 'Ver empleados',
-                'str' => 'view-employees',
+                'name' => 'Ver productos',
+                'str' => 'view-products',
             ],
             [
                 'name' => 'Crear empleados',
-                'str' => 'create-employees',
+                'str' => 'create-products',
             ],
             [
-                'name' => 'Editar empleados',
-                'str' => 'edit-employees',
+                'name' => 'mirar productos',
+                'str' => 'view-products',
+            ],
+            [
+                'name' => 'Editar productos',
+                'str' => 'edit-products',
             ],
             [
                 'name' => 'Eliminar empleados',
-                'str' => 'delete-employees',
+                'str' => 'delete-products',
             ],
             [
-                'name' => 'Restaurar empleados',
-                'str' => 'restore-employees',
+                'name' => 'Exportar productos',
+                'str' => 'export-products',
             ],
             [
-                'name' => 'Exportar empleados',
-                'str' => 'export-employees',
-            ],
-            [
-                'name' => 'Importar empleados',
-                'str' => 'import-employees',
+                'name' => 'Importar productos',
+                'str' => 'import-products',
             ],
         ];
 

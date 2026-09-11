@@ -1,7 +1,10 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
+import { Head, Link, usePage } from "@inertiajs/vue3";
 
+const page = usePage();
+
+const permissions = page.props.auth.permissions;
 const props = defineProps({
     product: {
         type: Object,
@@ -37,6 +40,7 @@ const props = defineProps({
                     </Link>
 
                     <Link
+                        v-if="permissions.includes('edit-products')"
                         :href="route('products.edit', product.id)"
                         class="rounded-lg bg-gray-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-700"
                     >

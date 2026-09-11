@@ -22,7 +22,7 @@ class AttachPermissionWithRolesSeeder extends Seeder
             if ($role->str === 'role-admin') {
                 $permissions = Permission::pluck('id');
             } else {
-                $permissions = Permission::whereIn('id', [1, 6])
+                $permissions = Permission::whereIn('id', [1, 5])
                     ->pluck('id');
             }
 

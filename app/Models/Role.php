@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Role extends Model
 {
@@ -11,13 +12,18 @@ class Role extends Model
         'slug',
     ];
 
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
-    }
-
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function permissions(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Permission::class,
+            'permission_role',
+            'role_id',
+            'permission_id'
+        );
     }
 }
