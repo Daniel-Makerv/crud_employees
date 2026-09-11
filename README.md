@@ -24,7 +24,7 @@ Crear el archivo `.env`:
 cp .env.example .env
 ```
 
-Generar la llave de Laravel:
+Generar la llave de Laravel::
 
 ```bash
 php artisan key:generate
