@@ -47,4 +47,13 @@ class User extends Authenticatable
                 : collect()
         );
     }
+
+    public function hasPermission(string $permission): bool
+    {
+        return $this->role
+            ? $this->role->permissions()
+            ->where('str', $permission)
+            ->exists()
+            : false;
+    }
 }
