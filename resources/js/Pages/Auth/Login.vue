@@ -73,7 +73,7 @@ const submit = () => {
                 </h1>
 
                 <p class="mt-6 max-w-lg text-lg leading-8 text-slate-400">
-                    Accede a tu cuenta para gestionar la información, usuarios y
+                    Accede a tu cuenta para gestionar la información, productos y
                     configuraciones de tu plataforma.
                 </p>
             </div>
