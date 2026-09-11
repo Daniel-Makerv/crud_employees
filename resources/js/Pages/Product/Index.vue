@@ -1,13 +1,18 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link } from "@inertiajs/vue3";
-
+import { Head, Link, router } from "@inertiajs/vue3";
 defineProps({
     products: {
         type: Object,
         required: true,
     },
 });
+
+const deleteProduct = (product) => {
+    if (confirm(`¿Estás seguro de eliminar "${product.name}"?`)) {
+        router.delete(route("products.destroy", product.id));
+    }
+};
 </script>
 
 <template>
@@ -131,6 +136,14 @@ defineProps({
                                 >
                                     Ver
                                 </Link>
+
+                                <button
+                                    type="button"
+                                    @click="deleteProduct(product)"
+                                    class="flex-1 rounded-lg bg-red-600 px-4 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-red-700"
+                                >
+                                    Eliminar
+                                </button>
                             </div>
                         </div>
                     </article>
